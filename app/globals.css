@@ -1,0 +1,493 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Root CSS Variables (DigitalHeros Palette) ───────────────────── */
+:root {
+  --ink-0:     #0a0a1a;
+  --ink-1:     #0d0d20;
+  --ink-2:     #111128;
+  --moss-400:  #86b696;
+  --moss-500:  #6fa37a;
+  --moss-600:  #3f6b54;
+  --moss-700:  #24453a;
+  --moss-900:  #0f1713;
+  --amber-500: #cd8a4b;
+  --amber-600: #a86930;
+  --cream:     #f5f0e8;
+
+  /* Semantic aliases */
+  --bg:             var(--ink-0);
+  --surface:        rgba(15, 23, 19, 0.55);
+  --elevated:       rgba(15, 23, 19, 0.80);
+  --border:         rgba(111, 163, 122, 0.18);
+  --border-strong:  rgba(111, 163, 122, 0.32);
+  --muted:          rgba(111, 163, 122, 0.08);
+  --text-primary:   rgba(245, 240, 232, 0.96);
+  --text-secondary: rgba(245, 240, 232, 0.65);
+  --text-tertiary:  rgba(245, 240, 232, 0.38);
+  --accent:         var(--moss-500);
+  --accent-hover:   var(--moss-400);
+  --accent-dim:     rgba(111, 163, 122, 0.14);
+  --amber:          var(--amber-500);
+}
+
+/* Light mode overrides */
+.light {
+  --bg:             #f5f3ef;
+  --surface:        rgba(255, 253, 249, 0.94);
+  --elevated:       rgba(245, 240, 232, 0.96);
+  --border:         rgba(63, 107, 84, 0.22);
+  --border-strong:  rgba(63, 107, 84, 0.40);
+  --muted:          rgba(63, 107, 84, 0.08);
+  --text-primary:   #0f1713;
+  --text-secondary: rgba(15, 23, 19, 0.65);
+  --text-tertiary:  rgba(15, 23, 19, 0.40);
+  --accent:         var(--moss-600);
+  --accent-hover:   var(--moss-700);
+  --accent-dim:     rgba(63, 107, 84, 0.12);
+  --amber:          var(--amber-600);
+}
+
+/* ── Base Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga";
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+/* ── Grain overlay (tactile depth like DH) ─────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.055 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+}
+
+/* ── Scrollbar (moss palette) ───────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--ink-0); }
+::-webkit-scrollbar-thumb  { background: var(--moss-600); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--moss-500); }
+html { scrollbar-width: thin; scrollbar-color: var(--moss-600) var(--ink-0); }
+
+/* ── Liquid background (hero) ───────────────────────────────────── */
+.liquid-bg {
+  background:
+    radial-gradient(120% 80% at 75% 40%, rgba(155, 207, 160, 0.13) 0%, transparent 55%),
+    radial-gradient(80% 60%  at 30% 85%, rgba(63, 107, 84, 0.22) 0%, transparent 60%),
+    radial-gradient(55% 55%  at 82% 78%, rgba(16, 31, 24, 0.90) 0%, rgba(10, 10, 26, 1) 70%),
+    linear-gradient(180deg, #0a0f0c 0%, #0a0a1a 100%);
+}
+
+/* ── Glass morphism ─────────────────────────────────────────────── */
+.glass {
+  background: rgba(15, 23, 19, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(111, 163, 122, 0.18);
+}
+.glass-soft {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(111, 163, 122, 0.12);
+}
+.light .glass {
+  background: rgba(255, 253, 249, 0.88);
+  border-color: rgba(63, 107, 84, 0.24);
+}
+.light .glass-soft {
+  background: rgba(245, 240, 232, 0.92);
+  border-color: rgba(63, 107, 84, 0.18);
+}
+
+/* ── 3D Drop Orbs (signature DH element) ───────────────────────── */
+.drop-orb {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255,255,255,0.30) 12%, transparent 32%),
+    radial-gradient(circle at 65% 65%, #cd8a4b 0%, #7a4423 30%, #2b1308 75%);
+  box-shadow:
+    inset 0 -25px 60px rgba(0,0,0,0.70),
+    inset 0 20px 40px rgba(255,255,255,0.08),
+    0 40px 100px rgba(205,138,75,0.22),
+    0 0 80px rgba(111,163,122,0.14);
+}
+.drop-orb-moss {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(255,255,255,0.28) 14%, transparent 34%),
+    radial-gradient(circle at 65% 65%, #7ba98c 0%, #3f6b54 30%, #0f1713 75%);
+  box-shadow:
+    inset 0 -12px 30px rgba(0,0,0,0.55),
+    inset 0 10px 20px rgba(255,255,255,0.07),
+    0 20px 50px rgba(111,163,122,0.20),
+    0 0 60px rgba(111,163,122,0.12);
+}
+.drop-orb-sm {
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(255,255,255,0.28) 12%, transparent 32%),
+    radial-gradient(circle at 65% 65%, #cd8a4b 0%, #7a4423 35%, #2b1308 80%);
+  box-shadow:
+    inset 0 -10px 26px rgba(0,0,0,0.55),
+    inset 0 8px 16px rgba(255,255,255,0.08),
+    0 16px 36px rgba(0,0,0,0.35);
+}
+
+/* ── Gradient text (moss → amber signature) ─────────────────────── */
+.text-mossamber {
+  background: linear-gradient(135deg, var(--moss-500) 0%, var(--amber-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-moss {
+  background: linear-gradient(135deg, var(--moss-400) 0%, var(--moss-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Serif + Mono editorial accents ─────────────────────────────── */
+.caption {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.50);
+}
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ── Ghost wordmark (DH vertical wordmark style, adapted horizontal) */
+.ghost-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(60px, 8vw, 120px);
+  letter-spacing: -0.04em;
+  color: rgba(111, 163, 122, 0.04);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  ANIMATIONS                                                     */
+/* ─────────────────────────────────────────────────────────────── */
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%      { transform: translateY(-18px) rotate(1deg); }
+  66%      { transform: translateY(-8px) rotate(-0.5deg); }
+}
+@keyframes floatX {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(12px); }
+}
+@keyframes blob-morph {
+  0%,100% { border-radius: 42% 58% 52% 48% / 48% 44% 56% 52%; }
+  33%     { border-radius: 58% 42% 38% 62% / 42% 58% 42% 58%; }
+  66%     { border-radius: 48% 52% 62% 38% / 58% 42% 58% 42%; }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.55; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.7); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sheen {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes orb-drift {
+  0%,100% { transform: translate(0px, 0px) scale(1); }
+  25%     { transform: translate(30px, -20px) scale(1.04); }
+  50%     { transform: translate(15px, 30px) scale(0.97); }
+  75%     { transform: translate(-20px, 10px) scale(1.02); }
+}
+@keyframes orb-drift-slow {
+  0%,100% { transform: translate(0px, 0px); }
+  50%     { transform: translate(-25px, 20px); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Animation utility classes */
+.float-y      { animation: floatY 7s ease-in-out infinite; }
+.float-x      { animation: floatX 9s ease-in-out infinite; }
+.blob         { animation: blob-morph 18s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.animate-fade-in  { animation: fade-in 0.5s ease both; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.85s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.rd-1 { transition-delay: 0.06s; }
+.rd-2 { transition-delay: 0.12s; }
+.rd-3 { transition-delay: 0.18s; }
+.rd-4 { transition-delay: 0.24s; }
+.rd-5 { transition-delay: 0.30s; }
+
+/* ─────────────────────────────────────────────────────────────── */
+/* COMPONENT LAYER                                                  */
+/* ─────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Panel card ──────────────────────────────────────────────── */
+  .panel {
+    border-radius: 1rem;
+    background: rgba(15, 23, 19, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(111, 163, 122, 0.18);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .panel:hover {
+    border-color: rgba(111, 163, 122, 0.28);
+    box-shadow: 0 0 40px rgba(111, 163, 122, 0.06);
+  }
+  .light .panel {
+    background: rgba(255, 253, 249, 0.90);
+    border-color: rgba(63, 107, 84, 0.22);
+  }
+  .light .panel:hover {
+    border-color: rgba(63, 107, 84, 0.38);
+    box-shadow: 0 4px 24px rgba(63, 107, 84, 0.08);
+  }
+
+  /* ── Form inputs ─────────────────────────────────────────────── */
+  .meta-input {
+    @apply w-full rounded-lg text-sm px-3 py-2.5 outline-none transition-all duration-200;
+    background: rgba(15, 23, 19, 0.60);
+    border: 1px solid rgba(111, 163, 122, 0.22);
+    color: rgba(245, 240, 232, 0.95);
+    font-family: 'Inter', sans-serif;
+  }
+  .meta-input:focus {
+    border-color: var(--moss-500);
+    box-shadow: 0 0 0 3px rgba(111, 163, 122, 0.18);
+    background: rgba(15, 23, 19, 0.75);
+  }
+  .meta-input::placeholder {
+    color: rgba(245, 240, 232, 0.28);
+  }
+  .light .meta-input {
+    background: rgba(255, 253, 249, 0.92);
+    border-color: rgba(63, 107, 84, 0.30);
+    color: var(--moss-900);
+  }
+  .light .meta-input:focus {
+    border-color: var(--moss-600);
+    box-shadow: 0 0 0 3px rgba(63, 107, 84, 0.18);
+  }
+  .light .meta-input::placeholder {
+    color: rgba(15, 23, 19, 0.30);
+  }
+
+  /* Select arrow — moss */
+  select.meta-input {
+    appearance: none;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236fa37a'><path d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    cursor: pointer;
+  }
+  .light select.meta-input {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%233f6b54'><path d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/></svg>");
+  }
+
+  /* ── Label ───────────────────────────────────────────────────── */
+  .meta-label {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: rgba(245, 240, 232, 0.55);
+  }
+  .light .meta-label {
+    color: rgba(15, 23, 19, 0.60);
+  }
+
+  /* ── Code block ──────────────────────────────────────────────── */
+  .code-block {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    background: rgba(10, 10, 26, 0.92);
+    border: 1px solid rgba(111, 163, 122, 0.30);
+    color: rgba(220, 236, 222, 0.96);
+    border-radius: 0 0 0.75rem 0.75rem;
+    padding: 1rem 1.25rem;
+    tab-size: 2;
+    overflow-x: auto;
+  }
+
+  /* ── Pulse indicator ─────────────────────────────────────────── */
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--moss-500);
+    animation: pulse-dot 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* ── Tab button ──────────────────────────────────────────────── */
+  .tab-btn {
+    @apply relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200;
+    font-family: 'Space Grotesk', sans-serif;
+    color: rgba(245, 240, 232, 0.45);
+  }
+  .tab-btn.active {
+    background: rgba(111, 163, 122, 0.14);
+    color: var(--moss-500);
+    box-shadow: 0 0 0 1px rgba(111, 163, 122, 0.28) inset;
+  }
+  .tab-btn:not(.active):hover {
+    background: rgba(111, 163, 122, 0.07);
+    color: rgba(245, 240, 232, 0.75);
+  }
+  .light .tab-btn {
+    color: rgba(15, 23, 19, 0.45);
+  }
+  .light .tab-btn.active {
+    background: rgba(63, 107, 84, 0.12);
+    color: var(--moss-600);
+    box-shadow: 0 0 0 1px rgba(63, 107, 84, 0.25) inset;
+  }
+  .light .tab-btn:not(.active):hover {
+    background: rgba(63, 107, 84, 0.07);
+    color: rgba(15, 23, 19, 0.75);
+  }
+
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/* SYNTAX HIGHLIGHT TOKENS (code output)                           */
+/* ─────────────────────────────────────────────────────────────── */
+.token-comment { color: rgba(111, 163, 122, 0.55); }
+.token-tag     { color: #7dd3fc; }
+.token-attr    { color: rgba(205, 138, 75, 0.90); }
+.token-value   { color: rgba(220, 236, 222, 0.90); }
+
+/* ─────────────────────────────────────────────────────────────── */
+/* MISC UTILITIES                                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* Amber accent rule */
+.amber-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--amber-500), transparent);
+  opacity: 0.4;
+}
+/* Moss accent rule */
+.moss-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--moss-500), transparent);
+  opacity: 0.35;
+}
+
+/* Focus ring (a11y) */
+a:focus-visible, button:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--moss-500);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Hero orb glow rings */
+.orb-glow-ring {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(111, 163, 122, 0.15);
+  animation: pulse-ring 3s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Stat pill */
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(111, 163, 122, 0.10);
+  border: 1px solid rgba(111, 163, 122, 0.22);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--moss-400);
+  backdrop-filter: blur(8px);
+}
+.light .stat-pill {
+  background: rgba(63, 107, 84, 0.09);
+  border-color: rgba(63, 107, 84, 0.24);
+  color: var(--moss-600);
+}
+
+/* ── Light mode body background ─────────────────────────────────── */
+.light body, .light {
+  background-color: #f5f3ef;
+}
