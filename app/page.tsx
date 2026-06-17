@@ -265,12 +265,26 @@ export default function Home() {
           </h1>
 
           <p
-            className="reveal rd-3 text-sm sm:text-base max-w-xl mb-6"
+            className="reveal rd-3 text-sm sm:text-base max-w-xl mb-4"
             style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}
           >
             Fill in the form and instantly see how your page looks on Google, Twitter/X, and
             Facebook. Copy the generated HTML meta tags with one click.
           </p>
+
+          {/* Built for Digital Heroes button */}
+          <div className="reveal rd-4 mb-6">
+            <a
+              id="built-for-digital-heroes-hero-btn"
+              href="https://digitalheroesco.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md px-5 py-2 font-medium text-white transition-opacity hover:opacity-90"
+              style={{ background: "#3B82F6", fontSize: "0.9rem" }}
+            >
+              Built for Digital Heroes
+            </a>
+          </div>
 
           {/* Stat strip */}
           <div className="reveal rd-4 flex flex-wrap items-center gap-3">
@@ -451,11 +465,11 @@ export default function Home() {
             <span style={{ color: "rgba(111,163,122,0.3)" }} className="hidden sm:inline">·</span>
             <a
               id="footer-author-email"
-              href="mailto:akkiajwed567@gmail.com"
+              href="mailto:akkijawed567@gmail.com"
               className="transition-colors hover:underline"
               style={{ color: "var(--moss-500)", fontSize: "0.78rem", fontFamily: "'JetBrains Mono', monospace" }}
             >
-              akkiajwed567@gmail.com
+              akkijawed567@gmail.com
             </a>
           </div>
 
