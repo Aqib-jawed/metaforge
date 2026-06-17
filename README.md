@@ -215,7 +215,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [metaforge-nine.vercel.app](metaforge-nine.vercel.app).
 
 **Requirements:** Node.js 18+ · npm 9+
 
@@ -279,7 +279,7 @@ This project is deployed on **Vercel's free Hobby plan** with zero configuration
 
 Every push to `main` triggers an automatic deployment. No paid plans, no environment variables, no build secrets required.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/metaforge)
+[![Deploy with Vercel](metaforge-nine.vercel.app)](https://vercel.com/new/clone?repository-url=https://github.com/Aqib-jawed/metaforge)
 
 ---
 
@@ -296,7 +296,7 @@ This project was built as part of the **Digital Heroes** developer trial.
 **Aqib Jawed**
 B.Tech Computer Science · GITAM University · 2027
 
-[https://portfolio-website-edwj.vercel.app/](https://portfolio-website-edwj.vercel.app/) · [your@email.com](akkijawed567@email.com) · [GitHub](https://github.com/Aqib-jawed)
+[Portfolio](https://portfolio-website-edwj.vercel.app/) · [Mail](akkijawed567@gmail.com) · [GitHub](https://github.com/Aqib-jawed)
 
 ---
 
